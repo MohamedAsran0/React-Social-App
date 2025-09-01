@@ -93,7 +93,7 @@ export default function Register() {
   return (
     <>
 
-      <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 mx-10 ">
+      <div className="flex flex-col justify-center py-20 sm:px-6 lg:px-8 mx-10 ">
             <h2 className='text-center font-extrabold text-6xl bg-gradient-to-br from-red-700 to-blue-800 bg-clip-text text-transparent p-2.5'>Register</h2>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
           <div className="bg-white  py-8 px-4 shadow sm:rounded-lg sm:px-10">
