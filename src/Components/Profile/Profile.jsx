@@ -106,20 +106,36 @@ export default function Profile() {
 
 
       <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 mx-10">
-        <div className='h-70 w-full bg-gray-600 pt-12 mb-35'>
+        
+        <div className="w-full bg-gray-600 py-10 md:py-14 lg:py-20 mb-10 md:mb-16 lg:mb-20 flex flex-col md:flex-row items-center md:items-end gap-6 px-4 md:px-8 lg:px-16">
           <label htmlFor="uploadProfilePhoto">
-            <div className='bg-white w-2/3 md:w-1/2 lg:w-1/4 rounded-full ml-5 relative cursor-pointer'>
-              <div className='w-full rounded-full overflow-hidden'>
-                <img src={data.data.posts?.[0].user.photo} className='w-full' alt="User Photo" />
+            <div className="bg-white w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-full relative cursor-pointer shadow-md">
+              <div className="w-full h-full rounded-full overflow-hidden">
+                <img
+                  src={data.data.posts?.[0].user.photo}
+                  className="w-full h-full object-cover"
+                  alt="User Photo"
+                />
               </div>
-              <div className='absolute w-14 h-14 right-3 bottom-3 p-3 rounded-full bg-green-300 text-2xl font-semibold text-center'>+</div>
+              <div className="absolute w-8 h-8 md:w-10 md:h-10 right-1 bottom-1 flex items-center justify-center rounded-full bg-green-300 text-xl md:text-2xl font-bold shadow">
+                +
+              </div>
             </div>
           </label>
-          <input ref={imageUpload} onChange={mutateHandleImageUploaded} type="file" id="uploadProfilePhoto" hidden />
-          <h1 className='text-4xl p-7 pl-32 font-bold'>{data.data.posts?.[0].user.name}</h1>
+          <input
+            ref={imageUpload}
+            onChange={mutateHandleImageUploaded}
+            type="file"
+            id="uploadProfilePhoto"
+            hidden
+          />
+          
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+            {data.data.posts?.[0].user.name}
+          </h1>
         </div>
 
-        <div className="mt-40 sm:mx-auto sm:w-full sm:max-w-xl flex flex-col gap-4">
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-xl flex flex-col gap-4">
           {myPosts.map((post) => (
             <PostCard key={post._id} postDetails={post} postUser={post.user} />
           ))}

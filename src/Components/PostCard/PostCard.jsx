@@ -57,9 +57,9 @@ export default function PostCard({ postDetails, postUser, isPostWithComments = f
         <CardHeader postDetails={postDetails} cardUser={postUser} />
         {postDetails.image && <img src={postDetails.image} className='mt-3 w-full' alt="" />}
 
-        <div className='m-3 flex gap-3'>
-          <input ref={commentInput} type="text" className='grow rounded-full border text-black font-semibold p-2' placeholder='Write Your Comment...' />
-          <button onClick={mutateAddComment} className="py-2 px-5 bg-blue-500 text-white rounded-full hover:bg-blue-700 cursor-pointer">{isCreateCommentPending ? <ClipLoader /> : 'Comment'}</button>
+        <div className='m-3 flex flex-wrap gap-3'>
+          <input ref={commentInput} type="text" className='flex-1 min-w-0 rounded-full border text-black font-semibold p-2' placeholder='Write Your Comment...' />
+          <button onClick={mutateAddComment} className="py-2 px-5 bg-blue-500 text-white rounded-full hover:bg-blue-700 cursor-pointer">{isCreateCommentPending ? <ClipLoader size={20} /> : 'Comment'}</button>
         </div>
 
         <div className='flex justify-between mt-3'>
