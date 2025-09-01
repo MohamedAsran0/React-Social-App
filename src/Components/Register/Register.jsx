@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import Swal from 'sweetalert2';
 import z from 'zod';
@@ -96,7 +96,7 @@ export default function Register() {
       <div className="flex flex-col justify-center py-20 sm:px-6 lg:px-8 mx-10 ">
             <h2 className='text-center font-extrabold text-6xl bg-gradient-to-br from-red-700 to-blue-800 bg-clip-text text-transparent p-2.5'>Register</h2>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
-          <div className="bg-white  py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="bg-white  py-8 px-4 shadow rounded-lg sm:px-10">
             <form onSubmit={handleSubmit(myHandleSubmit)}>
               <div>
                 <label className="block text-sm font-medium text-gray-700" htmlFor="username">
@@ -220,6 +220,10 @@ export default function Register() {
                 <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="submit">
                   {isLoading ? <ClipLoader /> : 'Sign up'}
                 </button>
+              </div>
+
+              <div className="mt-6 text-center">
+                <p className='text-sm font-medium text-gray-700'>Have account already ? <Link to={'/login'} className='text-blue-600 underline hover:no-underline'>Sign in</Link></p>
               </div>
             </form>
           </div>
