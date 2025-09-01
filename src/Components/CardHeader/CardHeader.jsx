@@ -15,6 +15,8 @@ export default function CardHeader({ postDetails, cardUser, isComment = false })
   const [openUpdatePostModal, setOpenUpdatePostModal] = useState(false);
   const [openUpdateCommentModal, setOpenUpdateCommentModal] = useState(false);
 
+  let timeCreated = postDetails.createdAt.slice(0,10) + ' ' + postDetails.createdAt.slice(11,16);  
+
   const { token } = useContext(tokenContextObj);
 
   const qClient = useQueryClient();
@@ -66,7 +68,7 @@ export default function CardHeader({ postDetails, cardUser, isComment = false })
           {cardUser.photo.split('/').pop() == 'undefined' && <img src={userIcon} className='w-10 h-10' alt={cardUser.name} />}
           <div>
             <h4>{cardUser.name}</h4>
-            <p>{postDetails.createdAt}</p>
+            <p>{timeCreated}</p>
           </div>
         </div>
         {user == cardUser._id && <Dropdown className='p-3' label="" renderTrigger={() => <span className='cursor-pointer text-2xl'>...</span>}>
