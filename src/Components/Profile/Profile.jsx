@@ -93,6 +93,9 @@ export default function Profile() {
     )
   }
 
+  const myPosts = [...data.data.posts];
+  myPosts?.reverse();
+
 
 
   return (
@@ -117,7 +120,7 @@ export default function Profile() {
         </div>
 
         <div className="mt-40 sm:mx-auto sm:w-full sm:max-w-xl flex flex-col gap-4">
-          {data.data.posts.map((post) => (
+          {myPosts.map((post) => (
             <PostCard key={post._id} postDetails={post} postUser={post.user} />
           ))}
 

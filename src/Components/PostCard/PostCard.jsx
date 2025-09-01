@@ -70,11 +70,11 @@ export default function PostCard({ postDetails, postUser, isPostWithComments = f
 
           {isPostWithComments && <div className='flex gap-2 items-center cursor-pointer'>
             <FaComment />
-            <p>comments</p>
+            <p>{postDetails.comments.length} comments</p>
           </div>}
           {!isPostWithComments && <div onClick={() => setOpenModal(true)} className='flex gap-2 items-center cursor-pointer'>
             <FaComment />
-            <p>comments</p>
+            <p>{postDetails.comments.length} comments</p>
           </div>}
 
           <div className='flex gap-2 items-center cursor-pointer'>

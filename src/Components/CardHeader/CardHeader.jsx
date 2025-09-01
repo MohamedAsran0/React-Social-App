@@ -1,8 +1,5 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import userIcon from '../../assets/user_icon.png'
-
-"use client";
-
 import { Dropdown, DropdownItem } from "flowbite-react";
 import { tokenContextObj } from '../../Context/TokenContextProvider';
 import { jwtDecode } from 'jwt-decode';
@@ -10,8 +7,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { RiseLoader } from 'react-spinners';
+import UpdatePostModal from '../UpdatePostModal/UpdatePostModal';
+import UpdateCommentModal from '../UpdateCommentModal/UpdateCommentModal';
 
 export default function CardHeader({ postDetails, cardUser, isComment = false }) {
+
+  const [openUpdatePostModal, setOpenUpdatePostModal] = useState(false);
+  const [openUpdateCommentModal, setOpenUpdateCommentModal] = useState(false);
 
   const { token } = useContext(tokenContextObj);
 
@@ -41,6 +43,15 @@ export default function CardHeader({ postDetails, cardUser, isComment = false })
     })
   }
 
+  function handleUpdateModal() {
+    if(!isComment) {
+      setOpenUpdatePostModal(true);
+    }
+    else {
+      setOpenUpdateCommentModal(true);
+    }
+  }
+
   return (
     <>
     {isDelPending && <div className='fixed top-20 left-1/2'>
@@ -60,13 +71,16 @@ export default function CardHeader({ postDetails, cardUser, isComment = false })
         </div>
         {user == cardUser._id && <Dropdown className='p-3' label="" renderTrigger={() => <span className='cursor-pointer text-2xl'>...</span>}>
           <DropdownItem onClick={mutateDel}>Delete</DropdownItem>
-          <DropdownItem>Update</DropdownItem>
+          <DropdownItem onClick={handleUpdateModal}>Update</DropdownItem>
         </Dropdown>}
 
       </div>
 
       {isComment && postDetails.content && <p className='mt-3'>{postDetails.content}</p>}
       {!isComment && postDetails.body && <p className='mt-3'>{postDetails.body}</p>}
+
+      {!isComment && <UpdatePostModal openModal = {openUpdatePostModal} setOpenModal = {setOpenUpdatePostModal} post = {postDetails}/>}
+      {isComment && <UpdateCommentModal openModal = {openUpdateCommentModal} setOpenModal = {setOpenUpdateCommentModal} post = {postDetails}/>}
     </>
   )
 }
